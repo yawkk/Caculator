@@ -1,0 +1,102 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Caculator.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Caculator.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Caculator"
+	    Background="#F0F0F0">
+
+	
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+
+	<Grid RowDefinitions="Auto,*" Margin="10">
+		<Border Grid.Row="0"
+                BorderBrush="#ADD8E6"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="5">
+			<TextBox Text="{Binding Display}"
+                     IsReadOnly="True"
+                     FontSize="24"
+                     TextAlignment="Right"
+                     Margin="5"
+                     Background="White"
+                     Foreground="Black"
+                     BorderThickness="0"/>
+		</Border>
+
+		<Grid Grid.Row="1"
+              RowDefinitions="*,*,*,*,*"
+              ColumnDefinitions="*,*,*,*"
+              Margin="0,10,0,0">
+
+			<!-- Row 0 -->
+			<Button Grid.Row="0" Grid.Column="0" Content="7" Command="{Binding NumberCommand}" CommandParameter="7" Classes="calc-button"/>
+			<Button Grid.Row="0" Grid.Column="1" Content="8" Command="{Binding NumberCommand}" CommandParameter="8" Classes="calc-button"/>
+			<Button Grid.Row="0" Grid.Column="2" Content="9" Command="{Binding NumberCommand}" CommandParameter="9" Classes="calc-button"/>
+			<Button Grid.Row="0" Grid.Column="3" Content="÷" Command="{Binding OperatorCommand}" CommandParameter="/" Classes="calc-button operator"/>
+
+			<!-- Row 1 -->
+			<Button Grid.Row="1" Grid.Column="0" Content="4" Command="{Binding NumberCommand}" CommandParameter="4" Classes="calc-button"/>
+			<Button Grid.Row="1" Grid.Column="1" Content="5" Command="{Binding NumberCommand}" CommandParameter="5" Classes="calc-button"/>
+			<Button Grid.Row="1" Grid.Column="2" Content="6" Command="{Binding NumberCommand}" CommandParameter="6" Classes="calc-button"/>
+			<Button Grid.Row="1" Grid.Column="3" Content="×" Command="{Binding OperatorCommand}" CommandParameter="*" Classes="calc-button operator"/>
+
+			<!-- Row 2 -->
+			<Button Grid.Row="2" Grid.Column="0" Content="1" Command="{Binding NumberCommand}" CommandParameter="1" Classes="calc-button"/>
+			<Button Grid.Row="2" Grid.Column="1" Content="2" Command="{Binding NumberCommand}" CommandParameter="2" Classes="calc-button"/>
+			<Button Grid.Row="2" Grid.Column="2" Content="3" Command="{Binding NumberCommand}" CommandParameter="3" Classes="calc-button"/>
+			<Button Grid.Row="2" Grid.Column="3" Content="-" Command="{Binding OperatorCommand}" CommandParameter="-" Classes="calc-button operator"/>
+
+			<!-- Row 3 -->
+			<Button Grid.Row="3" Grid.Column="0" Content="0" Command="{Binding NumberCommand}" CommandParameter="0" Classes="calc-button"/>
+			<Button Grid.Row="3" Grid.Column="1" Content="." Command="{Binding DecimalCommand}" Classes="calc-button"/>
+			<Button Grid.Row="3" Grid.Column="2" Content="=" Command="{Binding EqualsCommand}" Classes="calc-button equals"/>
+			<Button Grid.Row="3" Grid.Column="3" Content="+" Command="{Binding OperatorCommand}" CommandParameter="+" Classes="calc-button operator"/>
+
+			<!-- Row 4 -->
+			<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Clear" Command="{Binding ClearCommand}" Classes="calc-button clear"/>
+			<Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Content="Backspace" Command="{Binding BackspaceCommand}" Classes="calc-button clear"/>
+		</Grid>
+	</Grid>
+
+	<Window.Styles>
+		<Style Selector="Button.calc-button">
+			<Setter Property="Margin" Value="2"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="BorderBrush" Value="#ADD8E6"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="4"/>
+		</Style>
+		<Style Selector="Button.operator">
+			<Setter Property="Background" Value="#E6F3FF"/>
+		</Style>
+		<Style Selector="Button.equals">
+			<Setter Property="Background" Value="#E6F3FF"/>
+		</Style>
+		<Style Selector="Button.clear">
+			<Setter Property="Background" Value="#FFE6E6"/>
+		</Style>
+		<Style Selector="Button:pointerover">
+			<Setter Property="Background" Value="#D6EBFF"/>
+		</Style>
+	</Window.Styles>
+	
+</Window>
